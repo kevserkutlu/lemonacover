@@ -1,0 +1,61 @@
+.page {
+  padding-top: clamp(40px, 7vw, 80px);
+  max-width: 680px;
+  display: grid;
+  gap: 22px;
+}
+.lead {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
+.lead strong {
+  color: var(--ink);
+}
+.panel {
+  display: grid;
+  gap: 10px;
+}
+.lines {
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+/* teşekkür kartı */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40; /* konfetinin altında */
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: rgb(38 35 44 / 0.45);
+  backdrop-filter: blur(3px);
+  animation: fade 0.3s ease both;
+}
+.cardWrap {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  width: min(760px, 100%);
+}
+.card {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -24px rgb(38 35 44 / 0.6);
+  animation: card-in 0.7s cubic-bezier(0.2, 1.3, 0.4, 1) both 0.1s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(-6deg) scale(0.86);
+  }
+}

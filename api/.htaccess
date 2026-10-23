@@ -1,0 +1,4 @@
+# api/ klasörünün kendisi internetten görünmemeli; sadece public/ yayına açılır.
+# Hosting public/ klasörünü doğrudan gösteremiyorsa bu dosya config.php ve
+# src/ klasörünü korur.
+Require all denied

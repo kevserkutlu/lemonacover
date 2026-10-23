@@ -1,0 +1,39 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lemonacover",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "lemonacover-statik",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4173",
+        "--directory",
+        "out"
+      ],
+      "port": 4173
+    },
+    {
+      "name": "lemonacover-api",
+      "runtimeExecutable": "/opt/homebrew/bin/php",
+      "runtimeArgs": [
+        "-S",
+        "localhost:8787",
+        "-t",
+        "api/public",
+        "api/public/index.php"
+      ],
+      "port": 8787,
+      "autoPort": false
+    }
+  ]
+}

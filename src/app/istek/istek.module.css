@@ -1,0 +1,200 @@
+.page {
+  padding-top: clamp(40px, 7vw, 80px);
+  max-width: 680px;
+  display: grid;
+  gap: 18px;
+}
+.lead {
+  max-width: 58ch;
+}
+.panel {
+  display: grid;
+  gap: 18px;
+}
+.formTitle {
+  font-size: 1.35rem;
+}
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 560px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* fotoğraflar */
+.photos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 104px));
+  gap: 12px;
+}
+.photo {
+  position: relative;
+  aspect-ratio: 1;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+.remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.add {
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 16px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  text-align: center;
+  cursor: pointer;
+  padding: 6px;
+}
+.add:hover,
+.add:focus-within {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.add[data-invalid] {
+  border-color: #b4474f;
+}
+.plus {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+/* kılıf ve ölçüler */
+.kind {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.kind legend {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.chips {
+  display: flex;
+  gap: 8px;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.chip span {
+  display: inline-flex;
+  padding: 0.5em 1.1em;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-s);
+  background: #fff;
+  cursor: pointer;
+}
+.chip input:checked + span {
+  border-color: var(--primary);
+  background: var(--tan);
+}
+.chip input:focus-visible + span {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* durum */
+.sent {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line-strong);
+}
+.code {
+  letter-spacing: 0.12em;
+}
+.statusHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.badge {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25em 0.8em;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+}
+.badge[data-status="onaylandi"] {
+  background: var(--tan);
+}
+.badge[data-status="reddedildi"] {
+  background: var(--pink);
+}
+.agenda {
+  font-size: 1.4rem;
+}
+.reply {
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--tan);
+  background: var(--tan-soft);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+  font-family: var(--font-review);
+  font-weight: 300;
+  font-size: 1.05rem;
+  white-space: pre-line;
+}
+.price {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.lookup {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+.lookupRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.codeInput {
+  max-width: 14ch;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}

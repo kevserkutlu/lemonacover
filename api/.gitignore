@@ -1,0 +1,9 @@
+# gizli ayarlar (veritabanı şifresi, anahtarlar)
+config.php
+
+# müşteri dosyaları ve kayıtlar: asla repoya girmez
+/storage/uploads/*
+/storage/reviews/*
+/storage/requests/*
+/storage/logs/*
+!/storage/*/.gitkeep

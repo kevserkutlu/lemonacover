@@ -1,0 +1,196 @@
+/* mağaza puanları; beş sarı yıldız başlığın yanında (RatingStars) */
+.ratings {
+  margin-bottom: 36px;
+}
+/* başlığın içinde: boyutu yazıyla birlikte büyür (em) */
+.ratingStars {
+  display: inline-flex;
+  gap: 0.02em;
+  margin-left: 0.25em;
+  vertical-align: -0.14em;
+  white-space: nowrap;
+}
+.ratingStars svg {
+  width: 1.05em;
+  height: 1.05em;
+  overflow: visible;
+  fill: #f2c64e;
+  filter: drop-shadow(0.05em 0.07em 0 rgb(38 35 44 / 0.16)); /* yağan yıldızlarla aynı gölge */
+}
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.source {
+  text-decoration: none;
+  font-size: 0.92rem;
+  background-color: var(--card);
+  background-image: var(--grain);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: 0.45em 0.95em;
+}
+.source strong {
+  color: var(--navy);
+}
+.source:hover {
+  border-color: var(--primary);
+}
+
+.wall {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 3 260px;
+  column-gap: 24px;
+}
+
+.note {
+  break-inside: avoid;
+  position: relative;
+  margin: 0 0 30px;
+  padding: 24px 22px 16px;
+  transform: rotate(var(--tilt));
+  transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.note:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+.tape {
+  top: -12px;
+  left: 50%;
+  translate: -50% 0;
+  rotate: -4deg;
+}
+
+.text {
+  font-family: var(--font-review);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+}
+
+.user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.avatar {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  overflow: visible;
+  filter: drop-shadow(1.2px 1.6px 0 rgb(38 35 44 / 0.16)); /* yağan yıldızlarla aynı gölge */
+}
+
+.meta {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+.meta a {
+  color: var(--navy);
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.disclaimer {
+  margin-top: 28px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+/* sitede yazılan yorumların fotoğrafları */
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.photos[data-count="1"] {
+  grid-template-columns: 1fr;
+}
+.photos[data-count="2"] {
+  grid-template-columns: 1fr 1fr;
+}
+.photoBtn {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.photos[data-count="1"] .photoBtn {
+  aspect-ratio: 4 / 3;
+}
+.photoBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.photoBtn:hover img {
+  transform: scale(1.04);
+}
+.verified {
+  color: var(--navy);
+}
+
+.write {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+.write p {
+  max-width: 48ch;
+}
+
+.lightbox {
+  padding: 0;
+  border: 0;
+  background: none;
+  max-width: min(92vw, 900px);
+  max-height: 90vh;
+  overflow: visible;
+}
+.lightbox::backdrop {
+  background: rgb(38 35 44 / 0.7);
+}
+.lightbox img {
+  display: block;
+  max-width: min(92vw, 900px);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+}
+.lightboxClose {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}

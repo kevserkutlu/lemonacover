@@ -1,0 +1,255 @@
+.page {
+  padding-top: 24px;
+}
+
+.crumbs {
+  display: flex;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.crumbs a {
+  text-decoration: none;
+}
+.crumbs a:hover {
+  text-decoration: underline;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.gallery {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  gap: 12px;
+}
+.mainPhoto {
+  rotate: -0.6deg;
+}
+.mainPhoto :global(.pf__photo) {
+  aspect-ratio: 4 / 5;
+}
+.thumbs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+.thumb {
+  appearance: none;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  width: 72px;
+  height: 88px;
+  flex: none;
+  cursor: pointer;
+  background: var(--khaki-soft);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.thumb[aria-pressed="true"] {
+  border-color: var(--ink);
+}
+
+.info {
+  display: grid;
+  gap: 4px;
+}
+.title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-top: 4px;
+}
+.price {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.desc {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.option {
+  border: 0;
+  padding: 0;
+  margin: 26px 0 0;
+  display: grid;
+  gap: 8px;
+}
+.option legend {
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5em 1em;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-s);
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.chip span:hover {
+  border-color: var(--line-strong);
+}
+.chip input:checked + span {
+  border-color: var(--primary);
+  background: var(--tan);
+}
+.chip input:focus-visible + span {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.delta {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.buy {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.addBtn {
+  flex: 1;
+  min-width: 220px;
+}
+
+.added {
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+
+.facts {
+  margin: 28px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px dashed var(--line);
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.facts li::before {
+  content: "✦ ";
+  color: var(--navy);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .gallery {
+    position: static;
+  }
+}
+@media (max-width: 420px) {
+  .sizes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ajanda görseli yükleme */
+.option :global(.field) + :global(.field) {
+  margin-top: 10px;
+}
+label.drop {
+  font-weight: 400;
+}
+.drop {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  text-align: center;
+  padding: 18px 16px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-s);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.drop:hover,
+.dropActive {
+  border-color: var(--primary);
+  background: var(--pink);
+}
+.drop:focus-within {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.dropTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-s);
+  background: #fff;
+  font-size: 0.92rem;
+}
+.upload span {
+  flex: 1;
+}
+.uploadThumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Şeffaf / Simli: ayrı ilanlara giden bağlantılar, seçenek gibi görünür */
+.kind {
+  text-decoration: none;
+  color: inherit;
+}
+.kind[aria-current="page"] span {
+  border-color: var(--primary);
+  background: var(--tan);
+}
+.kind:focus-visible {
+  outline: none;
+}
+.kind:focus-visible span {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
