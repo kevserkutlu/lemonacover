@@ -1,0 +1,242 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* perde başlık çizgisinin hemen altından başlasın */
+  margin-top: calc(var(--logo-overflow) * -1);
+  padding: clamp(110px, 11vw, 140px) 0 clamp(24px, 3vw, 40px);
+}
+
+.corner {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  height: auto;
+}
+.cornerTl {
+  width: clamp(70px, 8vw, 120px);
+  top: 46px;
+  left: clamp(8px, 2vw, 30px);
+  rotate: -6deg;
+  z-index: 5; /* perdenin de üstünde süs */
+}
+.cornerBr {
+  width: clamp(120px, 14vw, 220px);
+  bottom: 0;
+  right: clamp(-10px, 1vw, 20px);
+  z-index: 5; /* perdenin de üstünde süs */
+}
+
+/* yazı solda, ajanda sağda; ikisi ortada sıkı bir blok olarak durur, perdelerden uzak.
+   Yazı sütunu içeriği kadar geniş (boş sütun payı yok), aradaki boşluk dar. */
+.inner {
+  --curtain: clamp(84px, 20vw, 290px); /* perdenin kornişteki genişliği */
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  padding: 0 calc(var(--curtain) + clamp(16px, 2.5vw, 48px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(28px, 3.2vw, 52px);
+}
+
+.copy {
+  flex: 0 1 380px;
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+.copy h1 {
+  font-size: clamp(2.3rem, 4.2vw, 4rem);
+}
+.copy :global(.ornament) {
+  justify-content: flex-start;
+}
+
+.lead {
+  font-size: 1.1rem;
+  max-width: 34ch;
+  color: var(--ink-soft);
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stage {
+  flex: 0 1 320px; /* fotoğraf + çizgilerin payı */
+  min-width: 240px;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  touch-action: pan-y;
+}
+
+/* bantlı fotoğraf: eğilir, ışık yansıması imleci takip eder */
+.photo {
+  justify-self: center;
+  --gx: 30%;
+  --gy: 20%;
+  --rx: 0deg;
+  --ry: 0deg;
+  width: 100%;
+  perspective: 900px;
+  opacity: 0;
+  transform: translateY(26px) rotate(6deg);
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.2, 1.2, 0.4, 1);
+}
+.photo.entered {
+  opacity: 1;
+  transform: none;
+}
+.photoCard {
+  rotate: 2deg;
+  transform: rotateX(var(--ry)) rotateY(var(--rx));
+  transition: transform 0.25s ease-out;
+}
+.frame {
+  display: block;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--pf-r);
+}
+.shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.shot[data-on="true"] {
+  opacity: 1;
+}
+.glare {
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--gx) var(--gy), rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 24%),
+    linear-gradient(
+      115deg,
+      transparent calc(var(--gx) - 10%),
+      rgb(255 255 255 / 0.32) var(--gx),
+      transparent calc(var(--gx) + 7%)
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.photo:hover .glare {
+  opacity: 1;
+}
+
+/* sim dokusu: sadece Simli seçiliyken. Parıldama animasyonu da sadece o zaman
+   çalışır (animasyon opaklığı değiştirdiği için şeffafta açık kalırsa noktalar görünür) */
+.sparkle {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  /* noktalar yarı saydam: parlak beyaz değil, simin hafif ışıltısı */
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 0.55) 1px, transparent 1.6px),
+    radial-gradient(circle, rgb(255 255 255 / 0.4) 0.8px, transparent 1.3px);
+  background-size: 37px 41px, 23px 29px;
+  background-position: 0 0, 11px 7px;
+}
+.isSimli .sparkle {
+  opacity: 0.5;
+  /* noktalar yer değiştirerek (adım adım) parıldar, opaklık yumuşakça iner çıkar */
+  animation:
+    twinkle-move 2.6s steps(2) infinite,
+    twinkle-fade 1.3s ease-in-out infinite alternate;
+}
+@keyframes twinkle-move {
+  50% {
+    background-position: 13px 19px, 3px 15px;
+  }
+}
+@keyframes twinkle-fade {
+  to {
+    opacity: 0.2;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .isSimli .sparkle {
+    animation: none;
+  }
+}
+.isSimli 
+.switch {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+}
+.switch button {
+  appearance: none;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  padding: 0.45em 1.2em;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.switch button[aria-checked="true"] {
+  background: var(--tan);
+  color: var(--ink);
+}
+
+/* iki sütun sığmayınca alt alta */
+@media (max-width: 1023px) {
+  .inner {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+  .copy {
+    flex: none;
+    justify-items: center;
+  }
+  .copy :global(.ornament) {
+    justify-content: center;
+  }
+  .actions {
+    justify-content: center;
+  }
+  .stage {
+    flex: none;
+    width: min(280px, 72vw);
+    min-width: 0;
+  }
+}
+
+/* fotoğrafın altında o anki ilanın adı (ilana bağlantı) */
+.caption {
+  margin-top: -10px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  text-align: center;
+  min-height: 1.5em;
+}
+.caption:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

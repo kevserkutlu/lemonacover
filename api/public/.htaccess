@@ -1,0 +1,11 @@
+# Apache / cPanel: bütün istekleri index.php'ye yönlendir
+Require all granted
+Options -Indexes
+RewriteEngine On
+
+# Authorization başlığı bazı hostinglerde PHP'ye ulaşmaz; bu satır iletir
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
